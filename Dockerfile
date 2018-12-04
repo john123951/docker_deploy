@@ -1,4 +1,4 @@
-FROM java:8-jdk-alpine
+FROM openjdk:8-jdk-alpine
 MAINTAINER sweet <john123951@126.com>
 
 ENV MICROSERVICE_NAME microservice_demo
