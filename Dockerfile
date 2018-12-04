@@ -1,7 +1,7 @@
 FROM java:8-jdk-alpine
 MAINTAINER sweet <john123951@126.com>
 
-ENV MICROSERVICE_NAME
+ENV MICROSERVICE_NAME microservice_demo
 ENV MICROSERVICE_ENV prod
 
 RUN echo "http://mirrors.aliyun.com/alpine/v3.8/main" > /etc/apk/repositories \
