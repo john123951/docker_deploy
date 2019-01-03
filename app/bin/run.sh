@@ -75,13 +75,18 @@ JAVA_OPTS+=(" -XX:+UseCMSCompactAtFullCollection -XX:+UseParNewGC -XX:+CMSParall
 #JAVA_OPTS+=(" -Djava.library.path=/usr/lib/hadoop/lib/native/Linux-amd64-64 ")
 
 #------------------------- jvm jmx monitor value setting --------------------------
+#JAVA_OPTS="$JAVA_OPTS "
 
-JAVA_OPTS="$JAVA_OPTS "
+#------------------------- profile --------------------------
+if [ -n $PROFILE ]; then
+  echo "Current profile: $PROFILE"
+  JAVA_OPTS="$JAVA_OPTS -Dspring.profiles.active=$PROFILE "
+fi
 
+echo $JAVA_OPTS
 
-
+#-------------------------------------------------------
 function start_program(){
-
 
 	if [ -f $PID_FILE ]; then
       echo "program is running exit."
@@ -89,7 +94,8 @@ function start_program(){
     fi
     echo -n "starting program ... "
       #nohup ${JAVA} -Dspring.profiles.active=${PROFILE} ${JAVA_OPTS} -jar $CLASSPATH > /dev/null 2>&1 &
-      ${JAVA} -Dspring.profiles.active=${PROFILE} ${JAVA_OPTS} -jar $CLASSPATH 
+      #${JAVA} -Dspring.profiles.active=${PROFILE} ${JAVA_OPTS} -jar $CLASSPATH 
+      ${JAVA} ${JAVA_OPTS} -jar $CLASSPATH 
     if [ $? -eq 0 ]
     then
       if /bin/echo -n $! > "$PID_FILE"
