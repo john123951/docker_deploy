@@ -2,7 +2,6 @@ FROM openjdk:8-jdk-alpine
 MAINTAINER sweet <john123951@126.com>
 
 ENV MICROSERVICE_NAME microservice_demo
-ENV MICROSERVICE_ENV
 
 RUN echo "http://mirrors.aliyun.com/alpine/v3.8/main" > /etc/apk/repositories \
     && echo "http://mirrors.aliyun.com/alpine/v3.8/community" >> /etc/apk/repositories \
